@@ -1,0 +1,40 @@
+<div class="row">
+  <h3>Cadastro pitch</h3>
+</div>
+  <form [formGroup] = "formulario">
+   <div class="containers">
+    <div class="row">
+      <div class="form-group col-md-5">
+        <label for="inputEmail4">texto da pitch</label>
+        <input formControlName="texto"  type="text" class="form-control" >
+      </div>
+
+
+
+
+    </div>
+  </div>
+    <button (click)="OnSubmit()" type="button" class="btn btn-primary my-5">Cadastar pitch</button>
+</form>
+<div class="mt-5" class="row">
+
+
+  <div class="col-11">
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">texto</th>
+
+    </tr>
+  </thead>
+  <tbody *ngFor="let pitch of listpitch">
+    <tr>
+      <td>{{pitch.texto}}</td>
+
+    </tr>
+  </tbody>
+ </table>
+  </div>
+</div>
+
+

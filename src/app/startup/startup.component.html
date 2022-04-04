@@ -1,0 +1,49 @@
+<div class="row">
+  <h3>Cadastro Startup</h3>
+</div>
+  <form [formGroup] = "formulario">
+   <div class="containers">
+    <div class="row">
+      <div class="form-group col-md-5">
+        <label for="inputEmail4">Nome da Startup</label>
+        <input formControlName="nome"  type="text" class="form-control" >
+      </div>
+      <div class="form-group col-md-5">
+        <label for="inputPassword4">LOCAL</label>
+        <input formControlName="local" type="text"  class="form-control" >
+      </div>
+      <div class="form-group col-md-5">
+        <label for="inputEmail4">FUNCAIONARIOS</label>
+        <input formControlName="funcionarios"  type="startup" class="form-control" >
+      </div>
+
+
+
+    </div>
+  </div>
+    <button (click)="OnSubmit()" type="button" class="btn btn-primary my-5">Cadastar Startup</button>
+</form>
+<div class="mt-5" class="row">
+
+
+  <div class="col-11">
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">LOCAL</th>
+      <th scope="col">FUNCIONARIOS</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let startup of liststartup">
+    <tr>
+      <td>{{startup.nome}}</td>
+      <td> {{startup.local}}</td>
+      <td> {{startup.funcionarios}}</td>
+    </tr>
+  </tbody>
+ </table>
+  </div>
+</div>
+
+
