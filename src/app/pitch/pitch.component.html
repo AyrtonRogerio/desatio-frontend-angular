@@ -1,40 +1,105 @@
-<div class="row">
-  <h3>Cadastro pitch</h3>
+
+
+<div class="example-container" [class.example-is-mobile]="modoExibicao" >
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()" matTooltip="Filtros"><mat-icon>menu</mat-icon></button>
+    <h1 class="example-app-name">Sistema Startup</h1>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+
+
+        <mat-icon matTooltip="Investimento" >trending_up</mat-icon>
+
+
+
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon matTooltip="Startups">store</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container"
+                         [style.marginTop.px]="modoExibicao ? 56 : 0">
+    <mat-sidenav #snav [mode]="modoExibicao ? 'over' : 'side'"
+                 [fixedInViewport]="modoExibicao" fixedTopGap="56">
+      <mat-nav-list  [formGroup] = "formulario" fxLayout="column">
+
+        <h2>Filtro de Pitch</h2>
+
+        <mat-hint>Localização da Startup</mat-hint>
+        <mat-form-field appearance="legacy">
+            <mat-label>Ex: Pernambuco</mat-label>
+            <input formControlName="local"  type="text" class="form-control" matInput placeholder="Placeholder">
+
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Selecione o Investimento</mat-label>
+            <mat-select formControlName="serie_investimento">
+              <mat-option *ngFor="let serie of series; let i = index" [value]="serie">{{serie}} </mat-option>
+
+            </mat-select>
+          </mat-form-field>
+
+
+          <div class="example-label-container" >
+            <label id="example-name-label" class="example-name-label">Funcionários</label>
+
+          </div>
+          <mat-slider formControlName="funcionarios"
+
+          thumbLabel
+          [displayWith]="formatLabel"
+          tickInterval="1"
+          min="1"
+          max="1000"
+          aria-label="units"> </mat-slider>
+
+          <button mat-raised-button color="primary" (click)="listaPitchPersonalizado()">Buscar</button>
+
+
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <!-- <p *ngFor="let content of fillerContent">{{content}}</p> -->
+      <mat-table [dataSource]="listpitch">
+        <!-- id Pitch -->
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef> STARTUP </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.startup.nome}} </mat-cell>
+        </ng-container>
+
+        <!-- Serie de Investimento -->
+        <ng-container matColumnDef="serieInvestimento">
+          <mat-header-cell *matHeaderCellDef> SÉRIE DE INVESTIMENTO </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.serie_investimento}} </mat-cell>
+        </ng-container>
+
+        <!-- Local -->
+        <ng-container matColumnDef="local">
+          <mat-header-cell *matHeaderCellDef> LOCAL </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.startup.local}} </mat-cell>
+        </ng-container>
+
+        <!-- Local -->
+        <ng-container matColumnDef="funcionarios">
+          <mat-header-cell *matHeaderCellDef>FUNCIONÁRIOS </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.startup.funcionarios}} </mat-cell>
+        </ng-container>
+
+         <!-- Local -->
+         <ng-container matColumnDef="botao">
+          <mat-header-cell *matHeaderCellDef>DETALHES </mat-header-cell>
+          <mat-cell *matCellDef="let row"> <button mat-raised-button color="primary" (click)="mostrarDetalhes(row)">Ver</button> </mat-cell>
+        </ng-container>
+
+        <!-- Header and Row Declarations -->
+        <mat-header-row *matHeaderRowDef="['id','serieInvestimento','local','funcionarios','botao']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['id','serieInvestimento','local','funcionarios','botao']"></mat-row>
+      </mat-table>
+
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
-  <form [formGroup] = "formulario">
-   <div class="containers">
-    <div class="row">
-      <div class="form-group col-md-5">
-        <label for="inputEmail4">texto da pitch</label>
-        <input formControlName="texto"  type="text" class="form-control" >
-      </div>
-
-
-
-
-    </div>
-  </div>
-    <button (click)="OnSubmit()" type="button" class="btn btn-primary my-5">Cadastar pitch</button>
-</form>
-<div class="mt-5" class="row">
-
-
-  <div class="col-11">
-  <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">texto</th>
-
-    </tr>
-  </thead>
-  <tbody *ngFor="let pitch of listpitch">
-    <tr>
-      <td>{{pitch.texto}}</td>
-
-    </tr>
-  </tbody>
- </table>
-  </div>
-</div>
-
-

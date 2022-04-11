@@ -1,6 +1,14 @@
+
+
+
+
 import { PitchService } from './pitch.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Pitch } from '../model/pitch';
+import { MatDialog } from '@angular/material/dialog';
+import { DetalhesPitchComponent } from '../detalhes-pitch/detalhes-pitch.component';
+
 
 @Component({
   selector: 'app-pitch',
@@ -11,28 +19,60 @@ export class PitchComponent implements OnInit {
 
   formulario!: FormGroup;
 
-  listpitch!: Pitch[]
+  public series: string[] = [
+    "", "A", "B", "C", "D"]
+  modoExibicao:boolean = false;
+
+  listpitch: Pitch[] =[];
   constructor(
+    public dialog: MatDialog,
     private formBuider: FormBuilder,
     private service: PitchService
   ) { }
+
+  formatLabel(value: number) {
+    if (value >= 1000) {
+      return Math.round(value / 1000) ;
+    }
+
+    return value;
+  }
+
+  metodoClick(){}
 
   ngOnInit(): void {
     this.listaPitch()
     this.formulario = this.formBuider.group({
 
-      texto: ['', Validators.required],
+      local: ['', Validators.required],
+      serie_investimento: ['', Validators.required],
+      funcionarios: [1, Validators.required],
   });
 
 }
 
 
+
+    mostrarDetalhes(pitch: Pitch ): void {
+
+      const dialogRef = this.dialog.open(DetalhesPitchComponent, {
+        maxHeight: '160vh',
+       minWidth: '460px',
+        width: '60vw',
+        data:pitch
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        // window.location.reload();
+      });
+
+    }
+
   listaPitch() {
     this.service.listaPitch()
       .subscribe(
-        (data: any) => {
-          this.listpitch = data
-        },
+        (data: Pitch[]) => this.listpitch = data,
         error => {
           console.log(error)
         }
@@ -41,6 +81,17 @@ export class PitchComponent implements OnInit {
 
     }
 
+
+    listaPitchPersonalizado(){
+      const { local, serie_investimento,funcionarios} = this.formulario.getRawValue()
+      this.service.listaPitchsPersonalizado(local, serie_investimento , funcionarios).subscribe(
+        (data: Pitch[]) => this.listpitch = data,
+        error => {
+          console.log(error)
+        }
+      );
+
+    }
 
     OnSubmit() {
 
@@ -78,16 +129,10 @@ export class PitchComponent implements OnInit {
     }
 
   montarPitch(): Pitch {
-    const { texto} = this.formulario.getRawValue()
+    const { texto, serie_investimento,startup} = this.formulario.getRawValue()
     return {
-      texto: texto
+      textoPitch: texto,
+      serie_investimento: serie_investimento,
+      startup
     }
-  }
-
-}
-
-export interface Pitch {
-  id?:number
-  texto: string;
-
-}
+  }}

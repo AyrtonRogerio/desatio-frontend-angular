@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>Detalhes </h1>
+<fo mat-dialog-content>
+
+
+    <div class="div" >
+      <h2>Startup</h2>
+      <form [formGroup]="formulario">
+        <mat-label>Nome:</mat-label>
+      <mat-form-field appearance="legacy">
+        <input formControlName="nome" value="{{data.startup.nome}}"  type="text" class="form-control" matInput>
+
+      </mat-form-field>
+
+      <mat-label>Local:</mat-label>
+      <mat-form-field appearance="legacy">
+        <input formControlName="local" value="{{data.startup.local}}" type="text" class="form-control" matInput >
+
+      </mat-form-field>
+
+      <mat-label>Quantidade de Funcionários:</mat-label>
+      <mat-form-field appearance="legacy">
+        <input formControlName="funcionarios" value="{{data.startup.funcionarios}}" type="text" class="form-control" matInput >
+
+      </mat-form-field>
+
+
+      <h2>Pitch</h2>
+
+      <mat-label>Texto do Pitch:</mat-label>
+      <mat-form-field style="width: 35%; height: 50%;" appearance="legacy">
+        <textarea formControlName="textoPitch" value="{{data.textoPitch}}" type="text" class="form-control"></textarea>
+      </mat-form-field>
+
+      <mat-label>Série de Investimento:</mat-label>
+       <mat-form-field appearance="legacy">
+        <!-- <mat-label>Série de Investimento</mat-label> -->
+         <input formControlName="serie_investimento" value="{{data.serie_investimento}}" type="text" class="form-control"  matInput >
+
+      </mat-form-field>
+
+
+  </form>
+
+
+</div>
+<!-- <div mat-dialog-actions>
+  <button mat-raised-button color="primary">Ok</button>
+</div> -->

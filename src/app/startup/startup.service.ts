@@ -3,7 +3,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from  '@angular/common/http';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { Startup } from './startup.component';
+import { Startup } from '../model/startup';
+
 
 @Injectable({
   providedIn: 'root'

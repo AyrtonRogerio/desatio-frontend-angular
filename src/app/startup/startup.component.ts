@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StartupService } from './startup.service';
+import { Startup } from '../model/startup';
+
 
 @Component({
   selector: 'app-startup',
@@ -13,7 +14,7 @@ export class StartupComponent implements OnInit {
 
   formulario!: FormGroup;
 
-  liststartup!: Startup[]
+  liststartup!: Startup[];
   constructor(
     private formBuider: FormBuilder,
     private service: StartupService
@@ -72,10 +73,7 @@ listaStartup() {
   limparCampos():void{
     this.formulario.get('nome')!.setValue('')
     this.formulario.get('funcionarios')!.setValue('')
-    this.formulario.get('local')!.setValue('')
-
-
-  }
+    this.formulario.get('local')!.setValue('') }
 
   validaCampos(): boolean {
     return this.formulario.valid ? true : false
@@ -90,14 +88,4 @@ listaStartup() {
       funcionarios:funcionarios
 
     }
-  }
-
-}
-
-export interface Startup {
-  id?:number
-  nome: string;
-  local: string;
-  funcionarios: string;
-
-}
+  }}
