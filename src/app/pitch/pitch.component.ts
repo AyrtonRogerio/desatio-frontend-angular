@@ -1,13 +1,15 @@
-
-
-
-
-import { PitchService } from './pitch.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Pitch } from '../model/pitch';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+
 import { DetalhesPitchComponent } from '../detalhes-pitch/detalhes-pitch.component';
+import { Pitch } from '../model/pitch';
+import { PitchService } from './pitch.service';
+
+
+
+
 
 
 @Component({
@@ -27,7 +29,8 @@ export class PitchComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private formBuider: FormBuilder,
-    private service: PitchService
+    private service: PitchService,
+    private router: Router
   ) { }
 
   formatLabel(value: number) {
@@ -127,6 +130,18 @@ export class PitchComponent implements OnInit {
       return this.formulario.valid ? true : false
 
     }
+
+    goToHome(){
+      this.router.navigate(['']);
+    }
+
+    goToInvest(){
+      this.router.navigate(['pitch']);
+    }
+
+    goToStartup() {
+      this.router.navigate(['startup']);
+  }
 
   montarPitch(): Pitch {
     const { texto, serie_investimento,startup} = this.formulario.getRawValue()

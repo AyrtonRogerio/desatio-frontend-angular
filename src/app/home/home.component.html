@@ -1,26 +1,23 @@
-<!--
-<div id="viewport">
-
-    <div id="sidebar">
-      <header>
-        <a href=>Startup Sistema</a>
-      </header>
-      <body>
+ <div class="example-container" [class.example-is-mobile]="modoExibicao" >
+  <mat-toolbar color="primary" class="example-toolbar">
 
 
-        <ul>
+   <div style="">
 
-          <i class="fa fa-barcode"></i> <a routerLink="/startup" routerLinkActive="true" class="h5 mt-4" href=>Startup</a>  <br>
-                <a routerLink="/pitch" routerLinkActive="true" class="h5" href=>Pitch</a>  <br>
+     <h1 class="example-app-name">Sistema Startup</h1>
+   </div>
+  </mat-toolbar>
 
-
-
-        </ul>
-
-      </body>
+  <div fxLayout="row" fxLayoutAlign="center center" style="height: 100%; width: 100%">
 
 
+    <button  (click)="goToInvest()" mat-raised-button  color="primary">
+      Sou Investidor
+    </button>
+
+    <button (click)="goToStartup()" mat-raised-button  color="primary">
+      Sou Startup
+    </button>
   </div>
-  </div>
+
 </div>
- -->

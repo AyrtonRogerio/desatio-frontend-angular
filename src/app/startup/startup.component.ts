@@ -3,6 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StartupService } from './startup.service';
 import { Startup } from '../model/startup';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,10 +15,13 @@ export class StartupComponent implements OnInit {
 
   formulario!: FormGroup;
 
+  modoExibicao:boolean = false;
+
   liststartup!: Startup[];
   constructor(
     private formBuider: FormBuilder,
-    private service: StartupService
+    private service: StartupService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -79,6 +83,18 @@ listaStartup() {
     return this.formulario.valid ? true : false
 
   }
+
+  goToHome(){
+    this.router.navigate(['']);
+  }
+
+  goToInvest(){
+    this.router.navigate(['pitch']);
+  }
+
+  goToStartup() {
+    this.router.navigate(['startup']);
+}
 
   montarStartup(): Startup {
     const { nome, local, funcionarios} = this.formulario.getRawValue()

@@ -2,19 +2,31 @@
 
 <div class="example-container" [class.example-is-mobile]="modoExibicao" >
   <mat-toolbar color="primary" class="example-toolbar">
-    <button mat-icon-button (click)="snav.toggle()" matTooltip="Filtros"><mat-icon>menu</mat-icon></button>
-    <h1 class="example-app-name">Sistema Startup</h1>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
 
+    <div class="div_buttons_app_bar">
+      <button mat-icon-button (click)="snav.toggle()" matTooltip="Filtros"><mat-icon>menu</mat-icon></button>
+
+      <button (click)="goToHome()" mat-icon-button class="example-icon" aria-label="Example icon-button with heart icon">
+
+        <mat-icon matTooltip="Home">home</mat-icon>
+      </button>
+
+      <button (click)="goToInvest()"mat-icon-button class="example-icon" aria-label="Example icon-button with heart icon">
 
         <mat-icon matTooltip="Investimento" >trending_up</mat-icon>
+      </button>
 
+      <button (click)="goToStartup()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
 
+        <mat-icon  matTooltip="Startups">store</mat-icon>
+      </button>
+    </div>
 
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon matTooltip="Startups">store</mat-icon>
-    </button>
+    <div class="div_texto_titulo_app_bar">
+
+      <h1 class="example-app-name">Sistema Startup</h1>
+    </div>
+
   </mat-toolbar>
 
   <mat-sidenav-container class="example-sidenav-container"
